@@ -1,0 +1,46 @@
+rootProject.name = 'jacocoTest'
+
+
+enableFeaturePreview("VERSION_CATALOGS")
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            version("serialization", "1.2.2")
+            alias("serialization-json").to("org.jetbrains.kotlinx", "kotlinx-serialization-json").versionRef("serialization")
+
+            // ktor
+            version("ktor", "1.6.7")
+            alias("ktor-core").to("io.ktor", "ktor-server-core").versionRef("ktor")
+            alias("ktor-serialization").to("io.ktor", "ktor-serialization").versionRef("ktor")
+            alias("ktor-gson").to("io.ktor", "ktor-gson").versionRef("ktor")
+            alias("ktor-netty").to("io.ktor", "ktor-server-netty").versionRef("ktor")
+            alias("ktor-auth").to("io.ktor", "ktor-auth").versionRef("ktor")
+            alias("ktor-jwt").to("io.ktor", "ktor-auth-jwt").versionRef("ktor")
+
+            alias("ktor-client-core").to("io.ktor", "ktor-client-core").versionRef("ktor")
+            alias("ktor-client-cio").to("io.ktor", "ktor-client-cio").versionRef("ktor")
+
+            // koin
+            version("koin", "3.1.5")
+            alias("koin-core").to("io.insert-koin", "koin-core").versionRef("koin")
+            alias("koin-ktor").to("io.insert-koin", "koin-ktor").versionRef("koin")
+            alias("koin-test").to("io.insert-koin", "koin-test").versionRef("koin")
+
+            // logback
+            alias("logback").to("ch.qos.logback:logback-classic:1.2.10")
+
+            // dotenv
+            alias("dotenv").to('io.github.cdimascio:dotenv-kotlin:6.2.2')
+
+            // tests
+            alias("ktor-test").to("io.ktor", "ktor-server-tests").versionRef("ktor")
+            alias("ktor-servertest").to("io.ktor", "ktor-server-test-host").versionRef("ktor")
+            alias("ktor-client-mock").to("io.ktor", "ktor-client-mock").versionRef("ktor")
+
+            version("mockk", "1.12.2")
+            alias("mockk").to("io.mockk", "mockk").versionRef("mockk")
+            alias("junit").to("junit:junit:4.12")
+        }
+    }
+}

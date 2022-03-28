@@ -1,0 +1,57 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+}
+apply plugin: "jacoco"
+
+jacocoTestReport {
+    reports {
+        html.enabled true
+        xml.enabled true
+    }
+}
+test.finalizedBy jacocoTestReport
+
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation libs.ktor.core
+    implementation libs.ktor.netty
+    implementation libs.ktor.auth
+    implementation libs.ktor.jwt
+    implementation libs.ktor.serialization
+    implementation libs.ktor.client.core
+    implementation libs.ktor.client.cio
+
+    implementation libs.koin.core
+    implementation libs.koin.ktor
+
+    implementation libs.dotenv
+    implementation libs.serialization.json
+    implementation libs.logback
+
+    testImplementation libs.junit
+    testImplementation libs.koin.test
+    testImplementation libs.mockk
+    testImplementation libs.ktor.test
+    testImplementation libs.ktor.client.mock
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "Koin*",
+                    "serializers/*",
+                    "WebServerInternal*"
+            ])
+        }))
+    }
+}
